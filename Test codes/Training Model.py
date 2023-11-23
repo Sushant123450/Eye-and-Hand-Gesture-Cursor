@@ -28,7 +28,7 @@ def get_screen_dimensions():
     return screen_width, screen_height
 
 # JSON file path
-json_file_path = "iris_data.json"
+json_file_path = "Test codes\iris_data.json"
 
 # Load data from the JSON file
 with open(json_file_path, "r") as json_file:

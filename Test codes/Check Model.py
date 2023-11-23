@@ -7,10 +7,10 @@ from tensorflow.keras.models import Sequential, load_model
 
 # Load the pre-trained face detector and shape predictor
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+predictor = dlib.shape_predictor("Test codes\shape_predictor_68_face_landmarks.dat")
 
 # JSON file path
-json_file_path = "iris_data.json"
+json_file_path = "Test codes\iris_data.json"
 
 # Load data from the JSON file
 with open(json_file_path, "r") as json_file:
@@ -34,7 +34,7 @@ with open(json_file_path, "r") as json_file:
 # X_train, X_test, y_train, y_test = train_test_split(features, iris_positions, test_size=0.2, random_state=42)
 
 # Load the trained model
-model = load_model("gaze_detection_model.h5")
+model = load_model("Test codes\gaze_detection_model.h5")
 
 # Create a VideoCapture object
 cap = cv2.VideoCapture(0)
