@@ -1,0 +1,5 @@
+python 3.10 (strict requirement)
+tensorflow
+numpy
+cmake
+numpy 
