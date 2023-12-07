@@ -4,6 +4,9 @@ import dlib
 import json
 import pyautogui
 
+global detector, predictor,json_data,cap,width,height
+screen_width, screen_height = pyautogui.size()
+
 def mouse_callback(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         # Store the position of the clicked circle
@@ -41,7 +44,14 @@ def Collect():
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor("Test codes\shape_predictor_68_face_landmarks.dat")
 
-    # Create a VideoCapture object
+    json_file_path = "iris_data.json"
+    try:    
+        with open(json_file_path, "r") as json_file:
+            json_data = json.load(json_file)
+    except FileNotFoundError:
+        # If the file doesn't exist, initialize an empty dictionary
+        json_data = {"circles": [], "left_irises": [], "right_irises": []}
+   
     cap = cv2.VideoCapture(1)
 
     # Get the screen width and height
@@ -51,20 +61,6 @@ def Collect():
     # Get the width and height of the camera image
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-
-    # JSON file path
-    json_file_path = "iris_data.json"
-
-    # Load existing data from the JSON file
-    try:
-        with open(json_file_path, "r") as json_file:
-            json_data = json.load(json_file)
-    except FileNotFoundError:
-        # If the file doesn't exist, initialize an empty dictionary
-        json_data = {"circles": [], "left_irises": [], "right_irises": []}
-
-
-
 
     # Create a fullscreen window with five circles at corners and center
     cv2.namedWindow("Video", cv2.WND_PROP_FULLSCREEN)
