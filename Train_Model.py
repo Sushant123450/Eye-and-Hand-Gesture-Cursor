@@ -36,6 +36,4 @@ def Train_Model():
     # Evaluate the model on the test set
     loss = model.evaluate(X_test, y_test)
     print(f"Test Loss: {loss}")
-
-    # Save the trained model
     model.save("gaze_detection_model.h5")
