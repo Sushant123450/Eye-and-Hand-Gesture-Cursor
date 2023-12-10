@@ -1,10 +1,10 @@
 
-# # buttons = []
 import tkinter as tk
 from tkinter import PhotoImage
 import Activate
 import Collect_Data
 import Train_Model
+import Cursor_control
 
 # Color Palette
 color_palette = ["#33AEA9", "#355C7D", "#725A7A", "#C56C86", "#FF7582"]
@@ -13,7 +13,7 @@ color_palette = ["#33AEA9", "#355C7D", "#725A7A", "#C56C86", "#FF7582"]
 window = tk.Tk()
 window.title("Beautiful Tkinter GUI")
 
-# Set background color
+# Set background colorn
 window.configure(bg=color_palette[0],height=1000,width=350)
 
 label_status = tk.Label(
@@ -33,7 +33,7 @@ label_project_name.pack(pady=10)
 
 # Collect Data Button
 collect_data_icon = PhotoImage(file=r"C:\Users\susha\OneDrive\Desktop\Eye Gaze\logo\DataCollection.png")
-collect_data_icon = collect_data_icon.subsample(25)  # Adjust the subsample values as needed
+collect_data_icon = collect_data_icon.subsample(28)  # Adjust the subsample values as needed
 collect_data_button = tk.Button(
     window,
     text="Collect Data",
@@ -90,6 +90,26 @@ activate_button = tk.Button(
     compound=tk.LEFT,
 )
 activate_button.pack(pady=10, padx=20)
+
+# Cursor control Button
+Cursor_icon = PhotoImage(file=r"logo\Cursor.png")
+Cursor_icon = Cursor_icon.subsample(5)
+Cursor_button = tk.Button(
+    window,
+    text="Cursor",
+    font=("Helvetica", 12),
+    command=Cursor_control.Cursor_control,
+    bg=color_palette[3],
+    fg="white",
+    bd=0,
+    padx=30,
+    pady=15,
+    image=Cursor_icon,
+    relief=tk.RAISED,
+    cursor="hand2",
+    compound=tk.LEFT,
+)
+Cursor_button.pack(pady=10, padx=20)
 
 # Quit Button
 quit_icon = PhotoImage(file=r"C:\Users\susha\OneDrive\Desktop\Eye Gaze\logo\exit.png")

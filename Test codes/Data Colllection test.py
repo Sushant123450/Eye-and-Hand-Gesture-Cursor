@@ -41,12 +41,12 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("Test codes\shape_predictor_68_face_landmarks.dat")
 
 # Create a VideoCapture object
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
-# Get the screen width and height
+# Get the screen width and heightq
 screen_width = int(cap.get(3))
 screen_height = int(cap.get(4))
-
+print(screen_height)
 # Get the width and height of the camera image
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))

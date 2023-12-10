@@ -24,14 +24,14 @@ def Train_Model():
     # Define the neural network model
     model = Sequential()
     model.add(Dense(64, activation='relu', input_shape=(4,)))
-    model.add(Dense(64, activation='linear'))
-    model.add(Dense(2, activation='relu'))  # Output layer with 2 neurons for x and y coordinates
+    model.add(Dense(32, activation='relu'))
+    model.add(Dense(2, activation='linear'))  # Output layer with 2 neurons for x and y coordinates
 
     # Compile the model with Adam optimizer and mean sq     uared error loss
     model.compile(optimizer=Adam(), loss='mean_squared_error')
 
     # Train the model
-    model.fit(X_train, y_train, epochs=300, batch_size=32, validation_data=(X_test, y_test))
+    model.fit(X_train, y_train, epochs=100, batch_size=32, validation_data=(X_test, y_test))
 
     # Evaluate the model on the test set
     loss = model.evaluate(X_test, y_test)

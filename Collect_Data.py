@@ -18,9 +18,6 @@ def mouse_callback(event, x, y, flags, param):
         if len(faces) > 0:
             landmarks = predictor(gray, faces[0])
 
-            # Store the positions of left and right irises
-            # left_eye = landmarks.part(42).x, landmarks.part(42).y
-            # right_eye = landmarks.part(45).x, landmarks.part(45).y
             left_eye = landmarks.part(36).x, landmarks.part(36).y
             right_eye = landmarks.part(45).x, landmarks.part(45).y
             json_data["left_irises"].append(
