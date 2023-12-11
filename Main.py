@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import PhotoImage
 import Activate
@@ -11,7 +10,7 @@ color_palette = ["#33AEA9", "#355C7D", "#725A7A", "#C56C86", "#FF7582"]
 
 # Create the main window
 window = tk.Tk()
-window.title("Beautiful Tkinter GUI")
+window.title("Eye Gaze Detection")
 
 # Set background colorn
 window.configure(bg=color_palette[0],height=1000,width=350)
@@ -32,7 +31,7 @@ label_project_name = tk.Label(
 label_project_name.pack(pady=10)
 
 # Collect Data Button
-collect_data_icon = PhotoImage(file=r"C:\Users\susha\OneDrive\Desktop\Eye Gaze\logo\DataCollection.png")
+collect_data_icon = PhotoImage(file=r"logo\DataCollection.png")
 collect_data_icon = collect_data_icon.subsample(28)  # Adjust the subsample values as needed
 collect_data_button = tk.Button(
     window,
@@ -52,7 +51,7 @@ collect_data_button = tk.Button(
 collect_data_button.pack(pady=10, padx=20)
 
 # Train Model Button
-train_model_icon = PhotoImage(file=r"C:\Users\susha\OneDrive\Desktop\Eye Gaze\logo\TrainModel.png")
+train_model_icon = PhotoImage(file=r"logo\TrainModel.png")
 train_model_icon = train_model_icon.subsample(20)
 train_model_button = tk.Button(
     window,
@@ -72,7 +71,7 @@ train_model_button = tk.Button(
 train_model_button.pack(pady=10, padx=20)
 
 # Activate Button
-activate_icon = PhotoImage(file=r"C:\Users\susha\OneDrive\Desktop\Eye Gaze\logo\Activate.png")
+activate_icon = PhotoImage(file=r"logo\Activate.png")
 activate_icon = activate_icon.subsample(20)
 activate_button = tk.Button(
     window,
@@ -96,7 +95,7 @@ Cursor_icon = PhotoImage(file=r"logo\Cursor.png")
 Cursor_icon = Cursor_icon.subsample(5)
 Cursor_button = tk.Button(
     window,
-    text="Cursor",
+    text="Cursor Control",
     font=("Helvetica", 12),
     command=Cursor_control.Cursor_control,
     bg=color_palette[3],
@@ -112,7 +111,7 @@ Cursor_button = tk.Button(
 Cursor_button.pack(pady=10, padx=20)
 
 # Quit Button
-quit_icon = PhotoImage(file=r"C:\Users\susha\OneDrive\Desktop\Eye Gaze\logo\exit.png")
+quit_icon = PhotoImage(file=r"logo\exit.png")
 quit_icon = quit_icon.subsample(20)
 quit_button = tk.Button(
     window,
