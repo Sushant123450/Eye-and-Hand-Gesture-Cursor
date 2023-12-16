@@ -6,48 +6,25 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential, load_model
 
 # Load the pre-trained face detector and shape predictor
+
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("Test codes\shape_predictor_68_face_landmarks.dat")
 
-# JSON file path
-json_file_path = "Test codes\iris_data.json"
-
-# Load data from the JSON file
+json_file_path = "iris_data.json"
 with open(json_file_path, "r") as json_file:
     json_data = json.load(json_file)
 
-# # Extract features (iris positions) and labels (circle positions)
-# iris_left = np.array(json_data["left_irises"])
-# iris_right = np.array(json_data["right_irises"])
-# circles = np.array(json_data["circles"])
-
-# # Combine left and right iris positions
-# iris_positions = np.concatenate((iris_left, iris_right), axis=1)
-
-# # Combine iris positions and circles to form the feature matrix
-# features = np.concatenate((iris_positions, circles), axis=1)
-
-# # Normalize features to be in the range [0, 1]
-# features = features / np.array([screen_width, screen_height, screen_width, screen_height])
-
-# # Split the data into training and testing sets
-# X_train, X_test, y_train, y_test = train_test_split(features, iris_positions, test_size=0.2, random_state=42)
-
 # Load the trained model
-model = load_model("Test codes\gaze_detection_model.h5")
+model = load_model("gaze_detection_model.h5")
 
 # Create a VideoCapture object
-cap = cv2.VideoCapture(0)
-
-Sensitivity = int(input("Sensitivty="))
-
-# Get the screen width and height
-screen_width = int(cap.get(3))
-screen_height = int(cap.get(4))
+cap = cv2.VideoCapture(1)
+cv2.namedWindow("Gaze Tracking", cv2.WND_PROP_FULLSCREEN)
+cv2.setWindowProperty("Gaze Tracking", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 while True:
     ret, frame = cap.read()
-
+    frame = cv2.flip(frame, 1)
     # Detect face and landmarks
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
@@ -61,17 +38,14 @@ while True:
 
         # Combine iris positions and circles to form the input for the model
         input_data = np.array([[left_eye[0], left_eye[1], right_eye[0], right_eye[1]]])
-        input_data = input_data / np.array(
-            [screen_width, screen_height, screen_width, screen_height]
-        )
 
         # Predict gaze position
         predicted_gaze = model.predict(input_data)[0]
 
         # Scale the predicted gaze position back to screen coordinates
-        predicted_gaze = predicted_gaze * np.array(
-            [screen_width * Sensitivity, screen_height * Sensitivity]
-        )
+        # predicted_gaze = predicted_gaze * np.array(
+        #     [screen_width * Sensitivity, screen_height * Sensitivity]
+        # )
         print(int(predicted_gaze[0]), int(predicted_gaze[1]))
         # Draw a circle at the predicted gaze position
         gaze_radius = 5
@@ -84,16 +58,16 @@ while True:
             -1,
         )
 
-    # Display the frame
     cv2.imshow("Gaze Tracking", frame)
 
-    # Break the loop if 'q' key is pressed
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 # Release the VideoCapture and close the OpenCV window
 cap.release()
 cv2.destroyAllWindows()
+
+
 # import numpy as np
 # import cv2
 # import dlib
