@@ -21,12 +21,13 @@ screen_width, screen_height = pyautogui.size()
 model = load_model("gaze_detection_model.h5")
 
 pyautogui.FAILSAFE = False
-cap = cv2.VideoCapture(1)
+
 
 # Initialize variables for finger clicks
 click_threshold = 50  # Adjust the threshold based on your preference
 prev_click_state = False
 def Cursor_control():
+    cap = cv2.VideoCapture(1)
     while True:
         ret, frame = cap.read()
         frame = cv2.flip(frame, 1)
