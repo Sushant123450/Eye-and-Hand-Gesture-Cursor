@@ -13,7 +13,7 @@ window = tk.Tk()
 window.title("Eye Gaze Detection")
 
 # Set background colorn
-window.configure(bg=color_palette[0],height=1000,width=350)
+window.configure(bg=color_palette[0], height=1000, width=350)
 
 label_status = tk.Label(
     window, text="", font=("Helvetica", 12), bg=color_palette[0], fg="white"
@@ -32,7 +32,9 @@ label_project_name.pack(pady=10)
 
 # Collect Data Button
 collect_data_icon = PhotoImage(file=r"logo\DataCollection.png")
-collect_data_icon = collect_data_icon.subsample(28)  # Adjust the subsample values as needed
+collect_data_icon = collect_data_icon.subsample(
+    28
+)  # Adjust the subsample values as needed
 collect_data_button = tk.Button(
     window,
     text="Collect Data",
@@ -130,4 +132,3 @@ quit_button = tk.Button(
 )
 quit_button.pack(pady=10, padx=20)
 window.mainloop()
-    
